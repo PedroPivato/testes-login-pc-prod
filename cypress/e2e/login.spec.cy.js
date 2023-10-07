@@ -4,8 +4,8 @@ import { faker } from '@faker-js/faker';
 describe('Funcionalidade Login', () => {
 
     let emailFaker = faker.internet.email()
-    let senhaFaker = faker.internet.password ()
-    
+    let senhaFaker = faker.internet.password()
+
     beforeEach(() => {
         cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
     });
@@ -26,17 +26,17 @@ describe('Funcionalidade Login', () => {
         cy.get('#password').type('teste@teste.com')
         cy.get('.woocommerce-form > .button').click()
 
-        cy.get('.woocommerce-error').should('contain', 'Endereço de e-mail desconhecido')        
+        cy.get('.woocommerce-error').should('contain', 'Endereço de e-mail desconhecido')
     });
 
-    it.only('Mensagem de senha incorreta', () => {
+    it('Mensagem de senha incorreta', () => {
 
         cy.get('#username').type('aluno_ebac@teste.com')
         cy.get('#password').type(senhaFaker)
         cy.get('.woocommerce-form > .button').click()
 
         cy.get('.woocommerce-error').should('contain', 'Perdeu a senha?')
-        
+
     });
 
 
